@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Login • San Valentín 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 30%, #fd79a8 60%, #a29bfe 100%);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animación de corazones cayendo */
+        .falling-hearts {
+            position: fixed;
+            top: -50px;
+            font-size: 40px;
+            animation: fall linear infinite;
+            opacity: 0.9;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 0.9;
+            }
+
+            100% {
+                top: 110vh;
+                opacity: 0.2;
+            }
+        }
+
+        /* Frases de amor cayendo */
+        .falling-quote {
+            position: fixed;
+            top: -100px;
+            font-size: 20px;
+            animation: fallQuote linear forwards;
+            opacity: 0;
+            z-index: 0;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            font-style: italic;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            pointer-events: none;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(253, 121, 168, 0.3));
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes fallQuote {
+            0% {
+                top: -100px;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 110vh;
+                opacity: 0;
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            text-align: center;
+            background: linear-gradient(145deg, #ffffff, #ffe5ec);
+            padding: 3rem 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+            width: 400px;
+            position: relative;
+            z-index: 10;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #ff6b9d, #ff1744);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 10px rgba(255, 107, 157, 0.3);
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #c06c84;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Imagen de corazón decorativo */
+        .heart-icon {
+            font-size: 80px;
+            margin-bottom: 1rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(255, 107, 157, 0.4));
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #c06c84;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: -0.8rem;
+        }
+
+        input {
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid #ffd1dc;
+            border-radius: 15px;
+            transition: all 0.3s;
+            background: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input:focus {
+            border-color: #ff6b9d;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+            transform: translateY(-2px);
+        }
+
+        input::placeholder {
+            color: #ffa5ba;
+            font-style: italic;
+        }
+
+        button {
+            padding: 1rem;
+            background: linear-gradient(135deg, #ff6b9d, #ff1744);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        #message {
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-height: 20px;
+        }
+
+        /* Decoraciones adicionales */
+        .decoration {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.3;
+            user-select: none;
+        }
+
+        .decoration.top-left {
+            top: -20px;
+            left: -20px;
+        }
+
+        .decoration.top-right {
+            top: -20px;
+            right: -20px;
+        }
+
+        .decoration.bottom-left {
+            bottom: -20px;
+            left: -20px;
+        }
+
+        .decoration.bottom-right {
+            bottom: -20px;
+            right: -20px;
+        }
+
+        /* Responsive para tablets */
+        @media (max-width: 768px) {
+            .container {
+                width: 350px;
+                padding: 2.5rem 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .heart-icon {
+                font-size: 70px;
+            }
+
+            .falling-hearts {
+                font-size: 28px;
+            }
+
+            .falling-quote {
+                font-size: 16px;
+                padding: 6px 12px;
+                max-width: 80%;
+                white-space: normal;
+                text-align: center;
+            }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                max-width: 320px;
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .subtitle {
+                font-size: 0.85rem;
+            }
+
+            .heart-icon {
+                font-size: 60px;
+            }
+
+            input {
+                padding: 0.8rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            button {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .falling-hearts {
+                font-size: 24px;
+            }
+
+            .falling-quote {
+                font-size: 14px;
+                padding: 5px 10px;
+                max-width: 85%;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .decoration {
+                font-size: 30px;
+            }
+        }
+
+        /* Responsive para móviles muy pequeños */
+        @media (max-width: 360px) {
+            .container {
+                width: 95%;
+                padding: 1.5rem 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .heart-icon {
+                font-size: 50px;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+
+            input {
+                padding: 0.7rem 0.9rem;
+                font-size: 0.9rem;
+            }
+
+            button {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .falling-hearts {
+                font-size: 20px;
+            }
+
+            .falling-quote {
+                font-size: 12px;
+                padding: 4px 8px;
+                max-width: 90%;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .decoration {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Corazones cayendo -->
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <!-- Decoraciones en las esquinas -->
+        <div class="decoration top-left">💕</div>
+        <div class="decoration top-right">💖</div>
+        <div class="decoration bottom-left">💗</div>
+        <div class="decoration bottom-right">💝</div>
+
+        <h1>💕 Login 💕</h1>
+        <p class="subtitle"> Inicia sesión ✨</p>
+
+        <div class="heart-icon">❤️</div>
+
+        <form id="loginForm">
+            <label for="username">👤 Usuario:</label>
+            <input type="text" id="username" name="username" placeholder="admin" required>
+
+            <label for="password">🔒 Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="1234" required>
+
+            <button type="submit">💘 Iniciar Sesión 💘</button>
+        </form>
+
+        <p id="message"></p>
+        <audio id="capibaraSong" src="https://www.myinstants.com/es/instant/capybara-wictor-75669/"></audio>
+    </div>
+
+    <script>
+        // Crear corazones cayendo
+        function createFallingHeart() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('falling-hearts');
+
+            // Variedad de emojis de amor
+            const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '💞', '🌹', '💐', '💞', '💖', '💗', '💓', '💝', '💘', '💞', '🌹', '💐'];
+            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+            // Posición aleatoria horizontal
+            heart.style.left = Math.random() * 100 + 'vw';
+
+            // Duración aleatoria de la caída
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+            // Tamaño aleatorio más grande
+            heart.style.fontSize = (Math.random() * 30 + 35) + 'px';
+
+            heartsContainer.appendChild(heart);
+
+            // Eliminar el corazón después de la animación
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Crear corazones cada 300ms
+        setInterval(createFallingHeart, 300);
+
+        // Frases de amor para el login
+        const loveQuotes = [
+            "El amor es la fuerza más poderosa del universo 💕",
+            "Eres mi persona favorita ❤️",
+            "Contigo, todo es mejor ✨",
+            "El amor verdadero nunca muere 💖",
+            "Eres mi razón para sonreír 😊",
+            "Juntos somos invencibles 💪💕",
+            "Tu amor ilumina mi vida 🌟",
+            "Cada día te amo más 💗",
+            "Eres mi sueño hecho realidad ✨",
+            "El amor lo conquista todo 💘",
+            "Contigo encontré mi hogar 🏡❤️",
+            "Eres mi felicidad 😊💕",
+            "Tu sonrisa es mi tesoro 💎",
+            "Amor eterno, amor infinito ∞",
+            "Eres el amor de mi vida 💖",
+            "Juntos para siempre 👫💕",
+            "Mi corazón late por ti 💓",
+            "Eres mi todo 🌍❤️",
+            "El amor es mágico ✨💫",
+            "Contigo, la vida es hermosa 🌹"
+        ];
+
+        // Crear frases cayendo
+        function createFallingQuote() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const quote = document.createElement('div');
+            quote.classList.add('falling-quote');
+
+            // Seleccionar una frase aleatoria
+            const randomQuote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
+            quote.innerHTML = randomQuote;
+
+            // Posición aleatoria horizontal (evitando los bordes)
+            quote.style.left = (Math.random() * 80 + 10) + 'vw';
+
+            // Duración aleatoria de la caída
+            quote.style.animationDuration = (Math.random() * 5 + 8) + 's';
+
+            // Tamaño de fuente aleatorio más grande
+            quote.style.fontSize = (Math.random() * 10 + 18) + 'px';
+
+            heartsContainer.appendChild(quote);
+
+            // Eliminar la frase después de la animación
+            setTimeout(() => {
+                quote.remove();
+            }, 13000);
+        }
+
+        // Crear frases cada 2.5 segundos
+        setInterval(createFallingQuote, 2500);
+
+        // Login form
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+            const song = document.getElementById('capibaraSong');
+
+            if (username === "admin" && password === "1234") {
+                message.style.color = "#ff1744";
+                message.textContent = "¡💖 Inicio de sesión exitoso! Redirigiendo... 💖";
+                song.play();
+
+                // Guardar la sesión en localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+
+                // Redirigir a index.html después de 2 segundos
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 2000);
+            } else {
+                message.style.color = "#d32f2f";
+                message.textContent = "💔 Usuario o contraseña incorrectos";
+            }
+        });
+    </script>
+</body>
+
+</html>

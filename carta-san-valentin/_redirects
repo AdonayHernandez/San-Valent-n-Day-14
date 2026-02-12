@@ -1,0 +1,9 @@
+# Netlify Redirects - Redirigir a Login.html como página principal
+/  /Login.html  200
+
+# Asegurar que las páginas correctas se sirvan
+/index.html  /index.html  200
+/Login.html  /Login.html  200
+
+# Redirigir cualquier ruta no encontrada al login
+/*  /Login.html  404

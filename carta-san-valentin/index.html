@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>💕 Feliz San Valentín 💕</title>
+    <style>
+        /* Corazones cayendo */
+        .falling-hearts {
+            position: fixed;
+            top: -50px;
+            font-size: 40px;
+            animation: fall linear infinite;
+            opacity: 0.9;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 0.9;
+            }
+
+            100% {
+                top: 110vh;
+                opacity: 0.2;
+            }
+        }
+
+        /* Mejora del botón de cerrar sesión */
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff6b9d, #ff1744);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 1000;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Responsive para tablets */
+        @media (max-width: 768px) {
+            .falling-hearts {
+                font-size: 35px;
+            }
+
+            .logout-btn {
+                padding: 10px 18px;
+                font-size: 13px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 480px) {
+            .falling-hearts {
+                font-size: 28px;
+            }
+
+            .logout-btn {
+                padding: 8px 14px;
+                font-size: 11px;
+                top: 10px;
+                right: 10px;
+            }
+
+            /* Ajuste del sobre para móviles */
+            .text {
+                font-size: 0.9em !important;
+                letter-spacing: 1px !important;
+            }
+        }
+
+        /* Responsive para móviles muy pequeños */
+        @media (max-width: 360px) {
+            .falling-hearts {
+                font-size: 24px;
+            }
+
+            .logout-btn {
+                padding: 6px 12px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // Verificar si el usuario está logueado
+        if (!localStorage.getItem('isLoggedIn')) {
+            // Si no está logueado, redirigir al login
+            window.location.href = "Login.html";
+        }
+
+        // Función para cerrar sesión
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = "Login.html";
+        }
+    </script>
+
+    <!-- Contenedor de corazones y frases -->
+    <div id="hearts-container"></div>
+
+    <!-- Botón de cerrar sesión mejorado -->
+    <button onclick="logout()" class="logout-btn">
+        💔 Cerrar Sesión
+    </button>
+
+    <div class="valentines-day">
+        <div class="envelope"></div>
+        <div class="heart"></div>
+        <div class="text">¡FELIZ DÍA DE<br>SAN VALENTÍN!</div>
+        <div class="front"></div>
+    </div>
+
+    <div id="card">
+        <div class="side one">
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="side two">
+            <h2>🌷🌷🌷</h2>
+            <p>Querida Jessy,</p>
+            <p>
+                En este San Valentín, quiero recordarte lo especial que eres. Cada sonrisa compartida, cada momento
+                juntos es un tesoro. Eres una persona maravillosa, tanto por dentro como por fuera. Valoro cada instante
+                compartido. Gracias por ser quien eres. 🫶
+            </p>
+            <p>
+                ¡Feliz San Valentín!
+            </p>
+            <p>
+                Con cariño,<br>
+                Alfred
+            </p>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Scripts de animaciones -->
+    <script>
+        // Crear corazones cayendo
+        function createFallingHeart() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('falling-hearts');
+
+            // Variedad de emojis de amor y amistad
+            const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '💞', '🌹', '💐', '🌺', '🌸', '✨'];
+            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+            // Posición aleatoria horizontal
+            heart.style.left = Math.random() * 100 + 'vw';
+
+            // Duración aleatoria de la caída
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+            // Tamaño aleatorio más grande
+            heart.style.fontSize = (Math.random() * 30 + 35) + 'px';
+
+            heartsContainer.appendChild(heart);
+
+            // Eliminar el corazón después de la animación
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Crear corazones cada 300ms
+        setInterval(createFallingHeart, 300);
+    </script>
+</body>
+
+</html>
